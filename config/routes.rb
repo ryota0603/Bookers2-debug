@@ -1,15 +1,20 @@
 Rails.application.routes.draw do
-  root to: "homes#top"
   devise_for :users
-  resources :books
+  root to: "homes#top"
+  get "home/about"=>"homes#about" , as: 'about'
+  
+  resources :books do
+   resource :favorites, only: [:create, :destroy]
+   resources :book_comments, only: [:create]
+  end
   resources :users, only: [:index,:show,:edit,:update]
-  resource :favorites, only: [:create, :destroy]
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
  
 
   
-  get "home/about"=>"homes#about" , as: 'about'
+  
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
