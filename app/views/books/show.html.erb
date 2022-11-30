@@ -24,14 +24,30 @@
         </tr>
       </table>
       <div class='col-md-8 offset-md-1'>
-      <%= form_with model: [@book, @book_comment] do |f| %>
-        <div class= "form-group">
-          <%= f.text_area :comment, placeholder: "コメントをここに", class: "form-control introduction"%>
-          <%= f.submit "送信する" %>
-        </div>
-      <% end %>
-      
-      <p>コメント件数：<%= @book.book_comments.count %></p>
+         <table class='table'>
+             <thead>
+              <tr>
+                <th>コメント</th>
+              </tr>
+              </thead>
+              <tbody>
+               <% @book_comments.each do |comment| %>
+      		      <tr>
+      		        <td><%= comment.comment %></td>
+      		        <td><%= link_to 'Destroy',book_book_comment_path(comment.book,comment),  method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+      		      </tr>
+      		     <% end %>
+      		    </tbody>
+      		</table>   
+        <%= form_with model: [@book, @book_comment] do |f| %>
+          <div class= "form-group">
+            <%= f.text_area :comment, placeholder: "コメントをここに", class: "form-control introduction"%>
+            <%= f.submit "送信する" %>
+          </div>
+        <% end %>
+        
+        <p>コメント件数：<%= @book.book_comments.count %></p>
+        　
       </div>
     </div>
   </div>

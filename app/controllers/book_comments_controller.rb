@@ -7,6 +7,13 @@ class BookCommentsController < ApplicationController
     comment.save
     redirect_to book_path(book)
   end
+  
+  def destroy
+    book = Book.find(params[:book_id])
+    book_comment = BookComment.find(params[:id])
+    book_comment.destroy
+    redirect_to book_path(book), notice: "successfully delete book!"
+  end
 
   private
 
