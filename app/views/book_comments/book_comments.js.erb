@@ -1,4 +1,7 @@
-$("#comments_area").html("<%= j(render 'book_comments/book_comments', post: @book, book_comment: @book_comment) %>");
+$("#comments_area").html("<%= j(render 'book_comments/book_comments',book_comments: @book_comments ) %>");
+$(".comment").html("<%= j(render 'book_comments/comment', book: @book ) %>");
 <!--フォームを送信したあとにフォームの値を空にします-->
 $("textarea").val('');
 <!--コントローラーのリダイレクトを変更-->
+
+
